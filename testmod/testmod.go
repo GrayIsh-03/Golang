@@ -1,14 +1,7 @@
-package hello
+package testmod
 
-import (
-	"rsc.io/quote"
-)
+import "fmt"
 
-func Hello() string {
-	return quote.Hello()
-}
-
-func double(n float64) float64 {
-	n *= n
-	return n
+func Hi(name string) string {
+	return fmt.Sprintf("Hi %s", name)
 }
