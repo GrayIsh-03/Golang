@@ -1,3 +1,4 @@
 # Git and GitHub Course
+# Learning Golang
 
-Crash course for Git
+This repository is educational, in it I study and practice programming skills.
