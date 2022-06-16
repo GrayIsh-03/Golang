@@ -52,7 +52,7 @@ func GuessNum() {
 
 }
 
-// thi a function visually shows rounding errors floating point numbers
+// this a function visually shows rounding errors floating point numbers
 func RoundErr() {
 	var total float64
 	for i := 1; i <= 10; i++ {
@@ -67,4 +67,25 @@ func RoundErr() {
 	// разница между двумя числами не слишком велика
 	fmt.Println(numFlo == 0.3)                 // false
 	fmt.Println(math.Abs(numFlo-0.3) > 0.0001) // false
+}
+
+// Эта func выбирает случайные значения и суммирует их с выводом текущего значения
+// суммирование продолжается до заданного значения
+func MoneyRand() {
+	var box float64
+	for {
+		i := rand.Intn(3)
+		switch i {
+		case 0:
+			box += 0.05
+		case 1:
+			box += 0.10
+		case 2:
+			box += 0.25
+		}
+		fmt.Printf("In your moneybox %05.2f $\n", box)
+		if box >= 20 {
+			break
+		}
+	}
 }

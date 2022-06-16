@@ -32,4 +32,5 @@ func main() {
 	fmt.Printf("Total: need %0.2f a liters paint\n", total)
 
 	task.RoundErr()
+	task.MoneyRand()
 }
