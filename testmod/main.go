@@ -3,6 +3,7 @@ package main
 import (
 	"Golang/paintneed"
 	"Golang/task"
+
 	"fmt"
 )
 
@@ -28,7 +29,7 @@ func main() {
 		fmt.Println(err)
 	}
 	total += amount
-	fmt.Printf("Total: need %0.2f a liters paint", total)
+	fmt.Printf("Total: need %0.2f a liters paint\n", total)
 
-	task.GuessNum()
+	task.RoundErr()
 }
