@@ -11,5 +11,7 @@ func main() {
 	fmt.Println(message)*/
 
 	task.RoundErr()
-	minitask.LaunchFall()
+	minitask.TicketsToMars()
+	minitask.EnumerationCharacter()
+
 }

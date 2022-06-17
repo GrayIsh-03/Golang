@@ -111,3 +111,64 @@ func PaintSum() {
 	total += amount
 	fmt.Printf("Total: need %0.2f a liters paint\n", total)
 }
+
+func Pass() {
+	fmt.Print("Enter your a grade:")
+	reader := bufio.NewReader(os.Stdin)
+	input, err := reader.ReadString('\n')
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(input)
+	input = strings.TrimSpace(input)
+	grade, err := strconv.ParseFloat(input, 64)
+
+	if err != nil {
+		log.Fatal(err)
+	} else if grade >= 60 {
+		fmt.Println("Your passed")
+	} else {
+		fmt.Println("Your failed")
+	}
+
+	fileInfo, err := os.Stat("my.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(fileInfo.Size())
+	fmt.Print(fileInfo.ModTime(), fileInfo.Sys())
+
+}
+
+func LeapYear() {
+
+	for count := 10; count > 0; count-- {
+
+		year := 2018 + rand.Intn(20)
+		mounth := rand.Intn(12) + 1
+		leapYear := year%400 == 0 || (year%4 == 0 && year%100 != 0)
+		dayInMounth := 31
+
+		if leapYear {
+			fmt.Printf("%10v will leap year\n", year)
+		} else {
+			fmt.Printf("%10v will non-leap year\n", year)
+		}
+
+		switch mounth {
+		case 2:
+			dayInMounth = 28
+			if leapYear {
+				dayInMounth = 29
+			}
+		case 4, 6, 9, 11:
+			dayInMounth = 30
+		}
+
+		day := rand.Intn(dayInMounth)
+		fmt.Println(year, mounth, day)
+
+	}
+}
