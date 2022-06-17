@@ -1,6 +1,7 @@
 package task
 
 import (
+	"Golang/keyboard"
 	"Golang/paintneed"
 	"bufio"
 	"fmt"
@@ -171,4 +172,31 @@ func LeapYear() {
 		fmt.Println(year, mounth, day)
 
 	}
+}
+
+//функция сообщает сдал ли пользователь экзамен
+func PassFail() {
+	fmt.Println("Enter a grade:")
+	grade, err := keyboard.GetFloat()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var status string
+	if grade < 60 {
+		status = "failling"
+	} else {
+		status = "passing"
+	}
+	fmt.Println("A grade of", grade, status)
+}
+
+func ToCelsius() {
+	fmt.Print(" Enter a temperature in Fahrenheit:")
+	fahrenheit, err := keyboard.GetFloat()
+	if err != nil {
+		log.Fatal(err)
+	}
+	celsius := (fahrenheit - 32) * 5 / 9
+	fmt.Printf("%0.2f degrees Celsius\n", celsius)
 }

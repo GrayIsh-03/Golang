@@ -11,7 +11,7 @@ func main() {
 	fmt.Println(message)*/
 
 	task.RoundErr()
-	minitask.TicketsToMars()
-	minitask.EnumerationCharacter()
+	minitask.VarpEngine()
+	task.ToCelsius()
 
 }
