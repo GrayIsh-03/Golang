@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Golang/keyboard/readfile"
 	"Golang/task"
 	minitask "Golang/task/mini"
 )
@@ -11,7 +12,7 @@ func main() {
 	fmt.Println(message)*/
 
 	task.RoundErr()
-	minitask.VarpEngine()
-	task.ToCelsius()
+	minitask.Average()
+	readfile.ReadFile()
 
 }
