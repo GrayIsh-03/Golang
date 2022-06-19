@@ -1,7 +1,9 @@
 package minitask
 
 import (
+	"Golang/task"
 	"fmt"
+	"log"
 	"math/rand"
 	"time"
 )
@@ -162,13 +164,21 @@ func EnumerationCharacter() {
 	}
 }
 
+//func Average вызывает func DataFile, от которой получает массив значений из файла
+//через цикл for range производит их суммирование и высчитывает среднее значение
 func Average() {
-	numbers := [3]float64{71.8, 56.2, 89.5}
+	//загружает файл по указанному пути, разбирает содержащиеся в нём числа
+	// и сохраняет в массив
+	numbers, err := task.DataFile("C:/Users/hp/Documents/data.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
 	var sum float64
+	//с помощью <_> искл index, за каждый цикл в number записывается значение из массива numbers
 	for _, number := range numbers {
 		sum += number
 	}
-	sampleCount := float64(len(numbers))
-	average := sum / sampleCount
+	sampleCount := float64(len(numbers)) //присваиваем количество элементов массива
+	average := sum / sampleCount         //высчитывается среденее значение всех элементов массива
 	fmt.Printf("Average: %0.2f\n", average)
 }

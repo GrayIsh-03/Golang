@@ -191,6 +191,8 @@ func PassFail() {
 	fmt.Println("A grade of", grade, status)
 }
 
+// func ToCelsius получает пользовательский ввод с клавиатуры преобразованный в число
+// и вычисляет значение градусов из Фаренгейта в Цельсия
 func ToCelsius() {
 	fmt.Print(" Enter a temperature in Fahrenheit:")
 	fahrenheit, err := keyboard.GetFloat()
@@ -199,4 +201,37 @@ func ToCelsius() {
 	}
 	celsius := (fahrenheit - 32) * 5 / 9
 	fmt.Printf("%0.2f degrees Celsius\n", celsius)
+}
+
+// func DataFile открывает файл, считывает строки, преобразует их в float64
+// и записывает их в массив значений и возвращает массив из трёх элементов или ошибку
+func DataFile(filename string) ([3]float64, error) {
+	var numbers [3]float64 // объявление возвращаемого массива
+	// открывает файл с переданным именем, передаём аргумент функции os.Open, а не путь в виде строки
+	file, err := os.Open(filename)
+	if err != nil {
+		return numbers, err
+	}
+	i := 0 // переменная для хранения индекса, по которому должно выполняться присваивание
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		// строка прочитанная из файла преобразуется в float64
+		// пустая строка выдаст ошибку parsing
+		numbers[i], err = strconv.ParseFloat(scanner.Text(), 64)
+		if err != nil {
+			return numbers, err
+		}
+		i++ //переход к следующему индексу массива
+	}
+	err = file.Close()
+	if err != nil {
+		return numbers, err
+	}
+	if scanner.Err() != nil {
+		return numbers, scanner.Err()
+	}
+	// Если выполнение дошло до этой точки, значит,ошибок не было, поэтому программа
+	//возвращает массив чисел и значение ошибки «nil».
+	return numbers, nil
+
 }
