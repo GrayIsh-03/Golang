@@ -4,6 +4,7 @@
 package main
 
 import (
+	hjk "Golang/testmod"
 	"fmt"
 	"log"
 	"os"
@@ -27,4 +28,6 @@ func main() {
 	sampleCount := float64(len(arguments))
 	fmt.Printf("Average: %0.2f\n", sum/sampleCount) // Вычисление среднего значения и его вывод.
 
+	hjk.Tyi("german")
+	maxim.Maximum(6, 8, 9)
 }
