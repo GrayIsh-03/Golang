@@ -4,6 +4,7 @@ import (
 	"Golang/keyboard/readfile"
 	"Golang/task"
 	minitask "Golang/task/mini"
+	"fmt"
 )
 
 func main() {
@@ -14,5 +15,6 @@ func main() {
 	task.RoundErr()
 	minitask.Average()
 	readfile.ReadFile()
+	fmt.Println("=============================")
 
 }
