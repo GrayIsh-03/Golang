@@ -1,4 +1,4 @@
-package readfile
+package fileprcss
 
 import (
 	"bufio"

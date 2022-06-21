@@ -1,39 +1,12 @@
-package minitask
+package task
 
 import (
-	"Golang/task"
 	"fmt"
-	"log"
 	"math/rand"
 	"time"
 )
 
-//func расчитывает сколько длится полет на Марс и расстояние до Марса в случайном диапозоне
-func VarpEngine() {
-	const hoursPerDay = 24
-	var (
-		speed    = 100800
-		distance = 96300000
-	)
-
-	day := distance / speed / hoursPerDay
-	fmt.Printf("Ours astronauts will fly to the Mars in %15v days \n", day)
-	// random distance from 56 000 000 to 401 000 000 km
-	randDistance := 56000000 + rand.Intn(345000001)
-	fmt.Println(randDistance, "km this random distance from the Earth to the Mars")
-}
-
-// func расчитывает скорость ракеты необходимую для преодоления дистанции за определённое количество дней
-func RocketSpeed() {
-	const hoursPerDay = 24
-	distance := 56000000
-	dayOnRoad := 28
-
-	rcktSpd := distance / dayOnRoad / hoursPerDay
-	fmt.Printf("rocket speed is %v km/h\n", rcktSpd)
-}
-
-// выбор локации через условие
+// func ThreeLocation реализует выбор локации через условие
 func ThreeLocation() {
 	var location = "not defined"
 
@@ -51,7 +24,7 @@ func ThreeLocation() {
 	}
 }
 
-// func реализует шанс 1 к 10, что запуск будет отменён
+// func LaunchFall реализует шанс 1 к 10, что запуск будет отменён
 func LaunchFall() {
 	var count int16
 	for count = 10; count >= 0; count-- {
@@ -78,7 +51,7 @@ func LaunchFall() {
 	   			break
 	   		}
 
-	   		time.Sleep(time.Second) // *! don't understand
+	   		time.Sleep(time.Second)
 	   		count--
 	   	}
 
@@ -89,26 +62,6 @@ func LaunchFall() {
 	   		fmt.Println("Launch canceled!")
 	   	}
 	*/
-}
-
-func MoneyBox() {
-	var box int32
-	for box < 2000 {
-
-		switch i := rand.Intn(3); i {
-		case 0:
-			box += 5
-		case 1:
-			box += 10
-		case 2:
-			box += 25
-		}
-
-		dollars := box / 100
-		cents := box % 100
-		fmt.Printf("in your money box $%d.%02d\n", dollars, cents)
-		time.Sleep(time.Millisecond)
-	}
 }
 
 // покупка билетов до Марса, формируется таблица, чем больше скорость тем больше цена
@@ -162,23 +115,4 @@ func EnumerationCharacter() {
 			fmt.Printf("%c\n", e) // %с outputs a character according to the Unicode code
 		}
 	}
-}
-
-//func Average вызывает func DataFile, от которой получает массив значений из файла
-//через цикл for range производит их суммирование и высчитывает среднее значение
-func Average() {
-	//загружает файл по указанному пути, разбирает содержащиеся в нём числа
-	// и сохраняет в массив
-	numbers, err := task.DataFile("C:/Users/hp/Documents/data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	var sum float64
-	//с помощью <_> искл index, за каждый цикл в number записывается значение из массива numbers
-	for _, number := range numbers {
-		sum += number
-	}
-	sampleCount := float64(len(numbers)) //присваиваем количество элементов массива
-	average := sum / sampleCount         //высчитывается среденее значение всех элементов массива
-	fmt.Printf("Average: %0.2f\n", average)
 }
