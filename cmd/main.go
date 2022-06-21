@@ -7,7 +7,6 @@ func main() {
 	/*message := quote.Hello()
 	fmt.Println(message)*/
 
-	calculation.ToCelsius()
-	calculation.MoneyBox()
+	calculation.AverageArg()
 
 }
