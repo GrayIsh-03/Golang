@@ -106,3 +106,25 @@ func Maximum(numbers ...float64) float64 {
 	}
 	return max
 }
+
+// func InRange возвращает сегмент значений лежащих в указанном диапозоне
+// от min до max
+func InRange(min float64, max float64, numbers ...float64) []float64 {
+	var result []float64
+	for _, number := range numbers {
+		// если аргумент не ниже min и не выше max
+		if number >= min && number <= max {
+			// то он добавляется в сегмент result
+			result = append(result, number)
+		}
+	}
+	return result
+}
+
+func Sum(numbers ...int) int {
+	var sum int = 0
+	for _, number := range numbers {
+		sum += number
+	}
+	return sum
+}

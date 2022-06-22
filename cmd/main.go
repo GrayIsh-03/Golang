@@ -12,6 +12,7 @@ func main() {
 
 	calculation.RocketSpeed()
 
-	fmt.Println(calculation.InRange(1, 20, 3, 78, 34, 3, 15, 56))
+	fmt.Println(calculation.Sum(9, 1, 2, 4))
+	fmt.Println(calculation.Sum(7))
 
 }
