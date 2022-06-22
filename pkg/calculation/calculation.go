@@ -120,3 +120,11 @@ func InRange(min float64, max float64, numbers ...float64) []float64 {
 	}
 	return result
 }
+
+func Sum(numbers ...int) int {
+	var sum int = 0
+	for _, number := range numbers {
+		sum += number
+	}
+	return sum
+}
