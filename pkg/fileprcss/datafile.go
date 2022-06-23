@@ -8,7 +8,7 @@ import (
 
 // func DataFile открывает файл, считывает строки, преобразует их в float64
 // и записывает их в массив значений и возвращает массив из трёх элементов или ошибку
-func DataFile(filename string) ([]float64, error) {
+func DataFileFlo(filename string) ([]float64, error) {
 	/*
 		var numbers [3]float64 // объявление возвращаемого массива
 		// открывает файл с переданным именем, передаём аргумент функции os.Open, а не путь в виде строки
@@ -61,4 +61,25 @@ func DataFile(filename string) ([]float64, error) {
 		return nil, scanner.Err()
 	}
 	return numbers, err
+}
+
+func DataFileStr(filename string) ([]string, error) {
+	strline := make([]string, 2) // объявляем переменную для хранения сегмента строк
+	file, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		strline = append(strline, line) // считанная строка line добавляется в сегмент строк strline
+	}
+	err = file.Close()
+	if err != nil {
+		return nil, err
+	}
+	if scanner.Err() != nil {
+		return nil, err
+	}
+	return strline, nil // если всё без ошибок, возвращаем сегмент строк
 }
