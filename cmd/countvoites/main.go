@@ -1,3 +1,5 @@
+// package main рассматривает два варианта подсчёта повторяющихся значений
+// с помощью сегментов и карты
 package main
 
 import (
@@ -37,5 +39,19 @@ func main() {
 		// Выыести каждый элемент из сегмента names и соответствующий элемент из сегмента counts
 		fmt.Printf("%s: %d\n", name, counts[i])
 	}
+	countVoites()
+}
 
+// func countVoites реализует подсчёт повторяющихся значений строкового типа
+// с помощью объявления и создания карты
+func countVoites() {
+	lines, err := fileprcss.DataFileStr("C:/Users/hp/Documents/GitHub/voites.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	counts := make(map[string]int) // объявляет карту: ключи - имена кандидатов, значения счётчик голосов
+	for _, line := range lines {
+		counts[line]++ // увеличивает счётчик голосов для текущего кандидата
+	}
+	fmt.Println(counts) // Выводит заполненную карту
 }

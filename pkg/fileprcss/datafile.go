@@ -64,7 +64,7 @@ func DataFileFlo(filename string) ([]float64, error) {
 }
 
 func DataFileStr(filename string) ([]string, error) {
-	strline := make([]string, 2) // объявляем переменную для хранения сегмента строк
+	strline := make([]string, 0) // объявляем переменную для хранения сегмента строк
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
