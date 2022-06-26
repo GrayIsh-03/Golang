@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"golang/pkg/fileprcss"
 	"log"
+	"sort"
 )
 
 func main() {
@@ -53,5 +54,17 @@ func countVoites() {
 	for _, line := range lines {
 		counts[line]++ // увеличивает счётчик голосов для текущего кандидата
 	}
-	fmt.Println(counts) // Выводит заполненную карту
+	var names []string         // создаём пустой сегмент для хранения ключей из карты counts
+	for name := range counts { // записываем ключи из counts в name, в результате они
+		// станут значениями для сегмента names, пустой идентификатор не используется
+		// заполняем сегмент names
+		names = append(names, name)
+	}
+	sort.Strings(names) // сортируем значения стркового типа сегмента names в алфавитном порядке
+	for _, name := range names {
+		// сегмент names содержит значения, которые соответствуют ключам в counts
+		// name получает значения/ключи в алфавитном порядке
+		fmt.Printf("Votes a %s of %d\n", name, counts[name])
+		// fmt выводит name как значение сегмента, а [name] как значение по ключу из карты
+	}
 }
