@@ -2,13 +2,26 @@ package main
 
 import (
 	"fmt"
+	"golang/internal"
 	"golang/pkg/calculation"
 )
 
-type subscraiber struct {
-	name   string
-	rate   float64
-	active bool
+func defaultSubscriber(name string) *internal.Subscraiber {
+	var s internal.Subscraiber
+	s.Name = name
+	s.Rate = 5.99
+	s.Active = true
+	return &s
+}
+
+func applyDiscount(s *internal.Subscraiber) {
+	s.Rate = 4.99
+}
+
+func printInfo(s *internal.Subscraiber) {
+	fmt.Println("Name:", s.Name)
+	fmt.Println("Monthly rate:", s.Rate)
+	fmt.Println("Active?", s.Active)
 }
 
 func main() {
@@ -19,23 +32,48 @@ func main() {
 	calculation.RocketSpeed()
 
 	subscraiber1 := defaultSubscriber("Aman Singh")
-	subscraiber1.rate = 4.99
+	applyDiscount(subscraiber1)
 	printInfo(subscraiber1)
-
 	subscraiber2 := defaultSubscriber("Beth Rayn")
 	printInfo(subscraiber2)
-}
 
-func printInfo(s subscraiber) {
-	fmt.Println("Name:", s.name)
-	fmt.Println("Monthly rate:", s.rate)
-	fmt.Println("Active?", s.active)
-}
+	var employee internal.Employee
+	employee.Name = "Dmitry Axe"
+	employee.Salary = 234.2
+	fmt.Println(employee.Name)
+	fmt.Println(employee.Salary)
 
-func defaultSubscriber(name string) subscraiber {
-	var s subscraiber
-	s.name = name
-	s.rate = 5.99
-	s.active = true
-	return s
+	/* //* Создание вложенной структуры. Вариант первый: создаём отдельную структуру
+	   adsress, а затем используем её для заполнения всего поля HomeAddress структуры
+	   subscriber
+
+	address := internal.Address{Street: "Vakarina", City: "Ulan-Ude",
+		State: "Buraytiya", PostalCode: "3012600",
+	}
+	subscraiber := internal.Subscraiber{Name: "Dmitriy Sword"}
+	subscraiber.HomeAddress = address
+	fmt.Println(subscraiber.HomeAddress)
+	*/
+
+	/* //* Создание вложенной структуры. Вариант второй: присвоение полям внутренней
+	   структуры значений через внешнюю структуру. Внешняя стуктура subscriber уже
+	   содержит поле HomeAddress, которое имеет тип вложенной структуры Adreess и
+	   заполнено нулевыми значениями. Если subscriber — переменная, содержащая структуру
+		Subscriber, то конструкция subscriber.HomeAddress дает вам структуру Address, хотя
+		вы и не задали HomeAddress явно. Это позволяет использовать «сцепленные» операторы
+		«точка» для обращения к полям структуры Address. subscriber.HomeAddress.City = ""
+	*/
+	subscriber := internal.Subscraiber{Name: "Dmitry Knife"}
+	subscriber.HomeAddress.Street = "Vakarina 42"
+	subscriber.HomeAddress.City = "Ulan-Ude"
+	subscriber.HomeAddress.State = "Saha Yakutiya"
+	subscriber.HomeAddress.PostalCode = "680780"
+	fmt.Printf("%#v\n", subscriber)
+
+	employee.HomeAddress.Street = "Renfoks 12"
+	employee.HomeAddress.City = "Oyimyakon"
+	employee.HomeAddress.State = "Saha Yakutiya"
+	employee.HomeAddress.PostalCode = "680790"
+	fmt.Printf("%#v\n", employee)
+	fmt.Println(employee.HomeAddress.State)
 }
