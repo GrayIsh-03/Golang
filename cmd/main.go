@@ -64,16 +64,16 @@ func main() {
 		«точка» для обращения к полям структуры Address. subscriber.HomeAddress.City = ""
 	*/
 	subscriber := internal.Subscraiber{Name: "Dmitry Knife"}
-	subscriber.HomeAddress.Street = "Vakarina 42"
-	subscriber.HomeAddress.City = "Ulan-Ude"
-	subscriber.HomeAddress.State = "Saha Yakutiya"
-	subscriber.HomeAddress.PostalCode = "680780"
-	fmt.Printf("%#v\n", subscriber)
+	// subscriber.HomeAddress.Street = "Vakarina 42" вариант обращения к неанонимному полю
+	subscriber.City = "Ulan-Ude" // обращение к анонимному полю
+	subscriber.State = "Saha Yakutiya"
+	subscriber.PostalCode = "680780"
+	fmt.Printf("%#v\n\n", subscriber)
 
-	employee.HomeAddress.Street = "Renfoks 12"
-	employee.HomeAddress.City = "Oyimyakon"
-	employee.HomeAddress.State = "Saha Yakutiya"
-	employee.HomeAddress.PostalCode = "680790"
+	employee.Street = "Renfoks 12"
+	employee.City = "Oyimyakon"
+	employee.State = "Saha Yakutiya"
+	employee.PostalCode = "680790"
 	fmt.Printf("%#v\n", employee)
-	fmt.Println(employee.HomeAddress.State)
+	fmt.Println(employee.State)
 }

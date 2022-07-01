@@ -3,16 +3,18 @@
 package internal
 
 type Subscraiber struct {
-	Name        string
-	Rate        float64
-	Active      bool
-	HomeAddress Address
+	Name   string
+	Rate   float64
+	Active bool
+	// HomeAddress Address данное поле типа структуры содержит вложенную структуру Address
+	Address // create an anonymous field
 }
 
 type Employee struct {
-	Name        string
-	Salary      float64
-	HomeAddress Address
+	Name   string
+	Salary float64
+	// HomeAddress Address
+	Address // create an anonymous field для упрощения кода при обращении к поллям
 }
 
 type Address struct {
