@@ -12,6 +12,26 @@ import (
 	"time"
 )
 
+type Liters float64
+type Gallons float64
+type Milliliters float64
+
+func (l Liters) ToGallons() Gallons {
+	return Gallons(l * 0.264)
+}
+
+func (m Milliliters) ToGallons() Gallons {
+	return Gallons(m * 0.000264)
+}
+
+func (g Gallons) ToLiters() Liters {
+	return Liters(g * 3.785)
+}
+
+func (g Gallons) ToMilliletrs() Milliliters {
+	return Milliliters(g * 3785.41)
+}
+
 //func VarpEngine расчитывает сколько длится полет на Марс и расстояние до Марса в случайном диапозоне
 func VarpEngine() {
 	const hoursPerDay = 24
@@ -121,10 +141,22 @@ func InRange(min float64, max float64, numbers ...float64) []float64 {
 	return result
 }
 
+// func суммирует передаваемые аргументы и возвращает их сумму
 func Sum(numbers ...int) int {
 	var sum int = 0
 	for _, number := range numbers {
 		sum += number
 	}
 	return sum
+}
+
+// func ConvGalLit конвертирует единицы измерения liters to gallons, milliliters to gallons, gallons to liters and milliliters
+func ConvGalLit(g float64, l float64, ml float64) {
+	soda := Liters(l)
+	fmt.Printf("%0.3f liters equals %0.3f gallons\n", soda, soda.ToGallons())
+	water := Milliliters(ml)
+	fmt.Printf("%0.3f milliliters equals %0.3f gallons\n", water, water.ToGallons())
+	milk := Gallons(g)
+	fmt.Printf("%0.3f gallons equals %0.3f liters\n%0.3f gallons equals %0.3f milliliters\n", milk, milk.ToLiters(), milk, milk.ToMilliletrs())
+
 }

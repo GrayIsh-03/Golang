@@ -3,27 +3,9 @@ package main
 import (
 	"fmt"
 	"golang/pkg/calculation"
+	"golang/pkg/task"
+	"log"
 )
-
-type Liters float64
-type Gallons float64
-type Milliliters float64
-
-func (l Liters) ToGallons() Gallons {
-	return Gallons(l * 0.264)
-}
-
-func (m Milliliters) ToGallons() Gallons {
-	return Gallons(m * 0.000264)
-}
-
-func (g Gallons) ToLiters() Liters {
-	return Liters(g * 3.785)
-}
-
-func (g Gallons) ToMilliletrs() Milliliters {
-	return Milliliters(g * 3785.41)
-}
 
 func main() {
 
@@ -32,11 +14,18 @@ func main() {
 
 	calculation.RocketSpeed()
 
-	soda := Liters(2)
-	fmt.Printf("%0.3f liters equals %0.3f gallons\n", soda, soda.ToGallons())
-	water := Milliliters(500)
-	fmt.Printf("%0.3f milliliters equals %0.3f gallons\n", water, water.ToGallons())
-	milk := Gallons(2)
-	fmt.Printf("%0.3f gallons equals %0.3f liters\n", milk, milk.ToLiters())
-	fmt.Printf("%0.3f gallons equals %0.3f milliliters\n", milk, milk.ToMilliletrs())
+	date := task.Date{}
+	err := date.SetYear(2001)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = date.SetMonth(12)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = date.SetDay(27)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(date)
 }
