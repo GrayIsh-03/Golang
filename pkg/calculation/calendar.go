@@ -12,7 +12,7 @@ func CalenDate() {
 	// К неэкспортируемым переменным, полям структур, функциям, методам и т. д.
 	// можно обращаться из экспортируемых функций и методов того же пакета.
 	date := task.Date{}
-	err := date.SetYear(2017)
+	err := date.SetYear(2019)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,4 +32,6 @@ func CalenDate() {
 	date = task.Date{year: 2019, month: 3, day: 31} // защита от инициализации полей в литерале структуры
 	fmt.Println(date)
 	*/
+
+	fmt.Println(date.Year()) // get-method for output unexported field
 }
