@@ -2,22 +2,22 @@ package task
 
 import (
 	"fmt"
-	"golang/internal"
+	"golang/internal/deftype"
 )
 
-func defaultSubscriber(name string) *internal.Subscraiber {
-	var s internal.Subscraiber
+func defaultSubscriber(name string) *deftype.Subscraiber {
+	var s deftype.Subscraiber
 	s.Name = name
 	s.Rate = 5.99
 	s.Active = true
 	return &s
 }
 
-func applyDiscount(s *internal.Subscraiber) {
+func applyDiscount(s *deftype.Subscraiber) {
 	s.Rate = 4.99
 }
 
-func printInfo(s *internal.Subscraiber) {
+func printInfo(s *deftype.Subscraiber) {
 	fmt.Println("Name:", s.Name)
 	fmt.Println("Monthly rate:", s.Rate)
 	fmt.Println("Active?", s.Active)
@@ -31,7 +31,7 @@ func Subscriber() {
 	subscraiber2 := defaultSubscriber("Beth Rayn")
 	printInfo(subscraiber2)
 
-	var employee internal.Employee
+	var employee deftype.Employee
 	employee.Name = "Dmitry Axe"
 	employee.Salary = 234.2
 	fmt.Println(employee.Name)
@@ -41,10 +41,10 @@ func Subscriber() {
 	   adsress, а затем используем её для заполнения всего поля HomeAddress структуры
 	   subscriber
 
-	address := internal.Address{Street: "Vakarina", City: "Ulan-Ude",
+	address := deftype.Address{Street: "Vakarina", City: "Ulan-Ude",
 		State: "Buraytiya", PostalCode: "3012600",
 	}
-	subscraiber := internal.Subscraiber{Name: "Dmitriy Sword"}
+	subscraiber := deftype.Subscraiber{Name: "Dmitriy Sword"}
 	subscraiber.HomeAddress = address
 	fmt.Println(subscraiber.HomeAddress)
 	*/
@@ -57,7 +57,7 @@ func Subscriber() {
 		вы и не задали HomeAddress явно. Это позволяет использовать «сцепленные» операторы
 		«точка» для обращения к полям структуры Address. subscriber.HomeAddress.City = ""
 	*/
-	subscriber := internal.Subscraiber{Name: "Dmitry Knife"}
+	subscriber := deftype.Subscraiber{Name: "Dmitry Knife"}
 	// subscriber.HomeAddress.Street = "Vakarina 42" вариант обращения к неанонимному полю
 	subscriber.City = "Ulan-Ude" // обращение к анонимному полю
 	subscriber.State = "Saha Yakutiya"

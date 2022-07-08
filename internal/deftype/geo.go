@@ -1,4 +1,6 @@
-package geo
+// Объявляется определяемый тип coordinates, set-methods для проверки
+// правильности ввода данных и get-methods для вызова данных из unexported fields
+package deftype
 
 import (
 	"errors"
