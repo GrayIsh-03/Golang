@@ -1,40 +1,37 @@
 package task
 
 import (
-	"errors"
+	"fmt"
+	"golang/internal/deftype"
+	"log"
 )
 
-type Date struct {
-	// имена полей с нижнего регистра для запрета от экспортирования
-	// т.о. достигается защита от ввода недействительных данных напрямую
-	year  int
-	month int
-	day   int
-}
+func CalenDate() {
 
-// Set-method проверяет что бы значение year было больше еденицы, в противном случае ошибка
-func (d *Date) SetYear(year int) error {
-	if year < 1 {
-		return errors.New("invalid year")
+	//* Опосредственное обращение
+	// К неэкспортируемым переменным, полям структур, функциям, методам и т. д.
+	// можно обращаться из экспортируемых функций и методов того же пакета.
+	date := deftype.Date{}
+	err := date.SetYear(2019)
+	if err != nil {
+		log.Fatal(err)
 	}
-	d.year = year
-	return nil
-}
+	err = date.SetMonth(12)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = date.SetDay(27)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(date)
 
-// Set-method проверяет что бы значение month лежало в пределах от 1 до 12, иначе ошибка
-func (d *Date) SetMonth(month int) error {
-	if month < 1 || month > 12 {
-		return errors.New("invalid month")
-	}
-	d.month = month
-	return nil
-}
+	/* date содержит значение типа Date. Обратиться к полям нельзя, т к они не экспортируюся
+		при обращении к ним, как показано ниже будет ошибка.
+	date.year = 2019 // защита от прямого присваивания
+	date = deftype.Date{year: 2019, month: 3, day: 31} // защита от инициализации полей в литерале структуры
+	fmt.Println(date)
+	*/
 
-// Set-method проверяет что бы значение day лежало в пределах от 1 до 31, иначе ошибка
-func (d *Date) SetDay(day int) error {
-	if day < 1 || day > 31 {
-		return errors.New("invalid day")
-	}
-	d.day = day
-	return nil
+	fmt.Println(date.Year()) // get-method for output unexported field
 }
