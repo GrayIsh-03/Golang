@@ -1,6 +1,6 @@
 // в этом пакете рассмотрен пример экспортирования определяемого типа на
 // базовом типе структуры и экспорт полей структуры.
-package internal
+package deftype
 
 type Subscraiber struct {
 	Name   string
@@ -14,7 +14,7 @@ type Employee struct {
 	Name   string
 	Salary float64
 	// HomeAddress Address
-	Address // create an anonymous field для упрощения кода при обращении к поллям
+	Address // create an anonymous field для упрощения кода при обращении к полям
 }
 
 type Address struct {
