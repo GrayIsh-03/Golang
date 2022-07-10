@@ -2,6 +2,13 @@ package main
 
 import "fmt"
 
+type mySubscriber struct {
+	name   string
+	old    int
+	rate   float64
+	active bool
+}
+
 func main() {
 
 	//! Pointers: all possible cases
@@ -28,6 +35,26 @@ func main() {
 	amount := 6
 	Double(&amount)
 	fmt.Println(amount)
+	fmt.Println("====================================================")
+	//todo=====================================================================
+
+	//* Second case
+	var value mySubscriber // creating a structure value
+	value.old = 18
+	var pointer *mySubscriber = &value // получаем указатель на значение структуры
+	//Go посчитает, что поле myField должно содержать указатель. В действительности
+	// это не так, поэтому происходит ошибка.
+	//? fmt.Println(*pointer.old)
+	//заключаем *pointer в круглые скобки, получаем значение myStruct, после
+	//чего можем обратиться к полю структуры.
+	fmt.Println((*pointer).old)
+	//оператор «точка» позволяет обращаться к полям по указателям на структуры
+	//точно так же, как вы обращаетесь к полям напрямую по значениям структур.
+	//Круглые скобки и оператор * не обязательны.
+	fmt.Println(pointer.old)
+
+	applyDiscount(&value)
+	fmt.Println(value.rate)
 }
 
 // Объявляем, что функция возвращает указатель на float64.
@@ -57,3 +84,7 @@ func Double(number *int) {
 состоит из знака * и типа переменной, на которую ссылается указатель.
 *int читается «указатель на int».
 */
+
+func applyDiscount(s *mySubscriber) {
+	s.rate = 4.99 // присваивание полю структуры по указателю без оператора *
+}
