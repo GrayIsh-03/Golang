@@ -2,6 +2,7 @@ package deftype
 
 import "fmt"
 
+// type support of interface Player, include methods Play, Stop
 type TapePlayer struct {
 	Batteries string
 }
@@ -13,6 +14,7 @@ func (t TapePlayer) Stop() {
 	fmt.Println("Stopped!")
 }
 
+// type support of interface Player, include methods Play, Record, Stop
 type TapeRecorder struct {
 	Microphones int
 }
